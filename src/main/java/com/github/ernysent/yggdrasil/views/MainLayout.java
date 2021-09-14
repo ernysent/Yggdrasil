@@ -1,5 +1,6 @@
 package com.github.ernysent.yggdrasil.views;
 
+import com.github.ernysent.yggdrasil.views.workers.WorkersView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -96,6 +97,8 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
 
                 new MenuItemInfo("About", "la la-file", AboutView.class), //
+
+                new MenuItemInfo("Workers", "la la-file", WorkersView.class),
 
         };
         List<RouterLink> links = new ArrayList<>();

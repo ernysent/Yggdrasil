@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ProdCalc {
 
-    static int calcMeters(int box) {
+    public static int calcMeters(int box) {
         int metrs = box*5;
         return metrs;
     }
