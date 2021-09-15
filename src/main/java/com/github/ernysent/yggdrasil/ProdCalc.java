@@ -1,5 +1,6 @@
 package com.github.ernysent.yggdrasil;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class ProdCalc {
@@ -35,7 +36,9 @@ public class ProdCalc {
     }
     public static double calcPainters(int box){
         double painter = 64;
-        double paint = Math.ceil(box/painter);
+       // DecimalFormat formated = DecimalFormat("%.0f");
+        double paint= Math.ceil(box/painter);
+    //    formated.format(paint);
         return  paint;
         // Round Up
         // (Double)Math.ceil(a/100);
