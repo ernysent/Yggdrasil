@@ -48,7 +48,7 @@ public class CalculatorView extends HorizontalLayout{
 //      double sumdye = prodCalc.calcPaint(boxesValue);
 //      double collect = prodCalc.calcCollector(boxesValue);
 //      double paint = prodCalc.calcPainters(boxesValue);
-      sample.setText("Meters: " + meters +"\nBoard: " + board+  "\nRemains: "+remains+);
+      sample.setText("Meters: " + meters +"\nBoard: " + board+  "\nRemains: "+remains);
 //      Section1(box,meters,board,remains);
 //      section2(sumdye);
     } );
