@@ -1,6 +1,7 @@
 package com.github.ernysent.yggdrasil.views;
 
 import com.github.ernysent.yggdrasil.views.calculator.CalculatorView;
+import com.github.ernysent.yggdrasil.views.calendar.CalendarView;
 import com.github.ernysent.yggdrasil.views.home.HomeView;
 import com.github.ernysent.yggdrasil.views.workers.WorkersView;
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Calculator", "la la-file", CalculatorView.class),//
 
-                new MenuItemInfo("Clandar", "la la-file", CalculatorView.class),//
+                new MenuItemInfo("Clandar", "la la-file", CalendarView.class),//
 
         };
         List<RouterLink> links = new ArrayList<>();
