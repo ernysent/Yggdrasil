@@ -1,5 +1,7 @@
 package com.github.ernysent.yggdrasil.views;
 
+import com.github.ernysent.yggdrasil.views.calculator.CalculatorView;
+import com.github.ernysent.yggdrasil.views.home.HomeView;
 import com.github.ernysent.yggdrasil.views.workers.WorkersView;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,11 +96,17 @@ public class MainLayout extends AppLayout {
 
     private List<RouterLink> createLinks() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
-                new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
+                new MenuItemInfo("Home", "la la-globe", HomeView.class),//
 
-                new MenuItemInfo("About", "la la-globe", AboutView.class), //
+          //      new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
+
+         //       new MenuItemInfo("About", "la la-globe", AboutView.class), //
 
                 new MenuItemInfo("Workers", "la la-file", WorkersView.class),
+
+                new MenuItemInfo("Calculator", "la la-file", CalculatorView.class),//
+
+                new MenuItemInfo("Clandar", "la la-file", CalculatorView.class),//
 
         };
         List<RouterLink> links = new ArrayList<>();
