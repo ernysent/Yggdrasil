@@ -20,8 +20,10 @@ public class ProdCalc {
     public static double calcPaint(int box) {
         double squa = (0.5*0.4)*4+(0.4*0.4)*2;
         double dye = 0.1;
-        double sumdye = squa*box*dye;
+        double sumdye = Math.ceil(squa*box*dye);
         return sumdye;
+
+      //  format("%.3f",sumdye);
     }
 
     public static double calcCollector(int box){
