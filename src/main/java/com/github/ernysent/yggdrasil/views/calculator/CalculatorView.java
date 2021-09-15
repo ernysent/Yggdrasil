@@ -53,7 +53,6 @@ public class CalculatorView extends HorizontalLayout{
       sample.getElement().setProperty("innerHTML", "Meters: " + meters +"<br>Board: " + board
           +  "<br> Remains: "+remains + "<br>Dye: " + sumdye + "<br>Collector: " +collect + "<br>Painters: "+ paint);
 
-//      section2(sumdye);
     } );
 
     setMargin(true);
