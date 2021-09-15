@@ -14,7 +14,7 @@ import com.vaadin.flow.router.RouteAlias;
 @PageTitle("Calculator")
 @Route(value = "calculator", layout = MainLayout.class)
 
-public class CalculatorView extends HorizontalLayout{
+public class CalculatorView extends VerticalLayout{
   private TextField boxes;
   private Button count;
 
@@ -33,8 +33,9 @@ public class CalculatorView extends HorizontalLayout{
     });
     count = new Button("count");
     Label sample = new Label();
-    add(boxes, count,sample);
-    setVerticalComponentAlignment(Alignment.END, boxes, count);
+    add(boxes, count);
+    add(sample);
+    setHorizontalComponentAlignment(Alignment.START, boxes, count);
 
 
     // Events
