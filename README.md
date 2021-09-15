@@ -4,17 +4,15 @@
 # Pre run notes
 
 1. Download and unzip JVM with HotSwap https://github.com/TravaOpenJDK/trava-jdk-11-dcevm/releases 
-    OR
-   Install Java 11
-    https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
-   (jdk-11.0.12_windows-x64_bin.exe)
-3. File -> SDKs -> JDK Home Path [C:\Program Files\Java\jdk-11.0.12]
-4. Run -> Edit Configurations -> + -> Maven -> 
-   Command Line: spring-boot:run
-   Runner -> 
-   Uncheck "User Project  Settings"
-   VM Options:   -Dhttps.protocols=TLSv1.2
+2. File -> SDKs -> JDK Home Path [C:\Program Files\Java\jdk-11.0.12]
+3. In IntelliJ IDEA: Run -> Edit Configurations -> + -> Maven -> 
+      Command Line: spring-boot:run
+      Runner -> 
+      Uncheck "User Project  Settings"
+      VM Options:   -Dhttps.protocols=TLSv1.2 -XX:HotswapAgent=fatjar  -Dspring.devtools.restart.enabled=false
 
+Live Reload Info:
+https://vaadin.com/docs/latest/flow/guide/live-reload/hotswap-agent
 
 
 This project can be used as a starting point to create your own Vaadin application with Spring Boot.
