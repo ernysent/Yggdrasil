@@ -43,7 +43,14 @@ public class CalculatorView extends HorizontalLayout{
       int boxesValue = Integer.parseInt(boxes.getValue());
       ProdCalc prodCalc = new ProdCalc();
       int meters = prodCalc.calcMeters(boxesValue);
-      sample.setText("Meters: " + meters);
+      int board = prodCalc.calcBoard(boxesValue);
+      double remains = prodCalc.calcRemains(boxesValue,board);
+//      double sumdye = prodCalc.calcPaint(boxesValue);
+//      double collect = prodCalc.calcCollector(boxesValue);
+//      double paint = prodCalc.calcPainters(boxesValue);
+      sample.setText("Meters: " + meters +"\nBoard: " + board+  "\nRemains: "+remains+);
+//      Section1(box,meters,board,remains);
+//      section2(sumdye);
     } );
 
     setMargin(true);
