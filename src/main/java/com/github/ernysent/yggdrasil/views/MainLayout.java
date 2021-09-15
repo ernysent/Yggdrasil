@@ -35,8 +35,8 @@ import com.vaadin.flow.component.avatar.Avatar;
 /**
  * The main view is a top-level placeholder for other views.
  */
-@PWA(name = "My App", shortName = "My App", enableInstallPrompt = false)
-@Theme(themeFolder = "myapp")
+@PWA(name = "Yggdrasil", shortName = "Yggdrasil", enableInstallPrompt = false)
+@Theme(themeFolder = "yggdrasil")
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
 
@@ -77,7 +77,7 @@ public class MainLayout extends AppLayout {
         Div layout = new Div();
         layout.addClassNames("flex", "h-xl", "items-center", "px-l");
 
-        H1 appName = new H1("My App");
+        H1 appName = new H1("Yggdrasil");
         appName.addClassNames("my-0", "me-auto", "text-l");
         layout.add(appName);
 
@@ -96,7 +96,7 @@ public class MainLayout extends AppLayout {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
                 new MenuItemInfo("Hello World", "la la-globe", HelloWorldView.class), //
 
-                new MenuItemInfo("About", "la la-file", AboutView.class), //
+                new MenuItemInfo("About", "la la-globe", AboutView.class), //
 
                 new MenuItemInfo("Workers", "la la-file", WorkersView.class),
 

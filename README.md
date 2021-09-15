@@ -3,11 +3,13 @@
 
 # Pre run notes
 
-1. Install Java 11
-https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+1. Download and unzip JVM with HotSwap https://github.com/TravaOpenJDK/trava-jdk-11-dcevm/releases 
+    OR
+   Install Java 11
+    https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
    (jdk-11.0.12_windows-x64_bin.exe)
-2. File -> SDKs -> JDK Home Path [C:\Program Files\Java\jdk-11.0.12]
-3. Run -> Edit Configurations -> + -> Maven -> 
+3. File -> SDKs -> JDK Home Path [C:\Program Files\Java\jdk-11.0.12]
+4. Run -> Edit Configurations -> + -> Maven -> 
    Command Line: spring-boot:run
    Runner -> 
    Uncheck "User Project  Settings"
