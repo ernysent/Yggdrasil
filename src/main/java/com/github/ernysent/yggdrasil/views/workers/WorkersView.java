@@ -25,40 +25,40 @@ import javax.swing.JTextField;
 
 
 public class WorkersView extends HorizontalLayout {
-  private TextField boxes;
-  private Button count;
-
-  public WorkersView(){
-
-      // Design
-      addClassName("workers-view");
-      boxes = new TextField("Your number of boxes");
-      boxes.setPlaceholder("write here");
-      boxes.addKeyPressListener(keyPressEvent -> {
-        if(keyPressEvent.getCode().isPresent()) {
-          if (keyPressEvent.getCode().get().getKeys().get(0).equals("Enter")) {
-            System.out.println("Hi too 3");
-            count.click();
-          }
-        }
-      });
-      count = new Button("count");
-        Label sample = new Label();
-      add(boxes, count,sample);
-      setVerticalComponentAlignment(Alignment.END, boxes, count);
-
-
-      // Events
-      count.addClickListener(e -> {
-          Notification.show( boxes.getValue() + " Boxes");
-          int boxesValue = Integer.parseInt(boxes.getValue());
-          ProdCalc prodCalc = new ProdCalc();
-          int meters = prodCalc.calcMeters(boxesValue);
-          sample.setText("Meters: " + meters);
-      } );
-
-      setMargin(true);
-  }
+//  private TextField boxes;
+//  private Button count;
+//
+//  public WorkersView(){
+//
+//      // Design
+//      addClassName("workers-view");
+//      boxes = new TextField("Your number of boxes");
+//      boxes.setPlaceholder("write here");
+//      boxes.addKeyPressListener(keyPressEvent -> {
+//        if(keyPressEvent.getCode().isPresent()) {
+//          if (keyPressEvent.getCode().get().getKeys().get(0).equals("Enter")) {
+//            System.out.println("Hi too 3");
+//            count.click();
+//          }
+//        }
+//      });
+//      count = new Button("count");
+//        Label sample = new Label();
+//      add(boxes, count,sample);
+//      setVerticalComponentAlignment(Alignment.END, boxes, count);
+//
+//
+//      // Events
+//      count.addClickListener(e -> {
+//          Notification.show( boxes.getValue() + " Boxes");
+//          int boxesValue = Integer.parseInt(boxes.getValue());
+//          ProdCalc prodCalc = new ProdCalc();
+//          int meters = prodCalc.calcMeters(boxesValue);
+//          sample.setText("Meters: " + meters);
+//      } );
+//
+//      setMargin(true);
+//  }
 }
 
 
