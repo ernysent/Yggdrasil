@@ -1,9 +1,17 @@
 package com.github.ernysent.yggdrasil.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.UUID;
 
+@Entity
 public class Worker {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String position;
@@ -14,10 +22,9 @@ public class Worker {
 
     }
 
-    public Worker(int id, String firstName, String lastName, String position,
+    public Worker(String firstName, String lastName, String position,
                   String phoneNumber){
         super();
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -25,10 +32,10 @@ public class Worker {
         this.active = true;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id){
+    public void setId(Long id){
         this.id = id;
     }
     public String getFirstName(){
