@@ -7,7 +7,7 @@ public class Worker {
     private String firstName;
     private String lastName;
     private String position;
-    private String active;
+    private Boolean active;
     private String phoneNumber;
 
     public Worker(){
@@ -22,7 +22,7 @@ public class Worker {
         this.lastName = lastName;
         this.position = position;
         this.phoneNumber = phoneNumber;
-
+        this.active = true;
     }
 
     public int getId() {
@@ -49,10 +49,10 @@ public class Worker {
     public void setPosition(String position){
         this.position = position;
     }
-    public String getActive(){
+    public Boolean getActive(){
         return active;
     }
-    public void setActive(String active){
+    public void setActive(Boolean active){
         this.active = active;
     }
     public String getPhoneNumber(){
