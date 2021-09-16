@@ -50,7 +50,7 @@ public class CalculatorView extends VerticalLayout{
 
       //sample.setText("Meters: " + meters +"<br>Board: " + board+  "<br>Remains: "+remains).;
       sample.getElement().setProperty("innerHTML", "Meters: " + meters +"<br>Board: " + board
-          +  "<br> Remains: "+remains + "<br>Dye: " + sumdye + "<br>Collector: " +collect + "<br>Painters: "+ paint);
+          +  "<br> Remains: "+remains + "<br>Dye: " + sumdye + "<br>Assembler: " +collect + "<br>Painter: "+ paint);
 
     } );
 

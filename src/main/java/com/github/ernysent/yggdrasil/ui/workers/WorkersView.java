@@ -29,13 +29,13 @@ public class WorkersView extends HorizontalLayout {
     grid.setItems(workersList);
     grid.removeColumnByKey("id");
     grid.setColumns("firstName","lastName","position","phoneNumber");
-    add(grid);
 
-    grid.addColumn(Worker::getFirstName).setHeader("First Name");
-    grid.addColumn(Worker::getLastName).setHeader("Last Name");
-    grid.addColumn(Worker::getPosition).setHeader("Position");
+
+//    grid.addColumn(Worker::getFirstName).setHeader("First Name");
+//    grid.addColumn(Worker::getLastName).setHeader("Last Name");
+//    grid.addColumn(Worker::getPosition).setHeader("Position");
     grid.addColumn(Worker::getActive).setHeader("Active");
-    grid.addColumn(Worker::getPhoneNumber).setHeader("Phone Number");
+//    grid.addColumn(Worker::getPhoneNumber).setHeader("Phone Number");
     add(grid);
   }
 
