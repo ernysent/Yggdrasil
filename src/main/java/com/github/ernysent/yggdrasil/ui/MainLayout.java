@@ -1,39 +1,23 @@
-package com.github.ernysent.yggdrasil.views;
+package com.github.ernysent.yggdrasil.ui;
 
-import com.github.ernysent.yggdrasil.views.calculator.CalculatorView;
-import com.github.ernysent.yggdrasil.views.calendar.CalendarView;
-import com.github.ernysent.yggdrasil.views.home.HomeView;
-import com.github.ernysent.yggdrasil.views.workers.WorkersView;
+import com.github.ernysent.yggdrasil.ui.calculator.CalculatorView;
+import com.github.ernysent.yggdrasil.ui.calendar.CalendarView;
+import com.github.ernysent.yggdrasil.ui.home.HomeView;
+import com.github.ernysent.yggdrasil.ui.workers.WorkersView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.ComponentUtil;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.charts.model.Navigation;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Header;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.TabVariant;
-import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
-import com.github.ernysent.yggdrasil.views.MainLayout;
-import com.github.ernysent.yggdrasil.views.helloworld.HelloWorldView;
-import com.github.ernysent.yggdrasil.views.about.AboutView;
-import com.vaadin.flow.component.avatar.Avatar;
 
 /**
  * The main view is a top-level placeholder for other views.
