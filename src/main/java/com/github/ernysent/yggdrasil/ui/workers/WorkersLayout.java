@@ -45,6 +45,7 @@ public class WorkersLayout extends VerticalLayout {
             ComboBox<Boolean> activeField = new ComboBox();
             activeField.setLabel("Active");
             activeField.setItems(true,false);
+            activeField.setValue(false);
 
 
 //            TextField positionField = new TextField("Position");
@@ -67,10 +68,11 @@ public class WorkersLayout extends VerticalLayout {
 
 
                 workerRepository.save(worker);
+                grid.setItems(worker);
                 dialog.close();
             });
 
-            HorizontalLayout fieldsLayout = new HorizontalLayout(nameField,lastNameField,phoneField,phoneField,activeField);
+            HorizontalLayout fieldsLayout = new HorizontalLayout(nameField,lastNameField,positionField,phoneField,activeField);
             fieldsLayout.setSpacing(true);
             HorizontalLayout buttonLayout = new HorizontalLayout(closeButton,saveButton);
             //buttonLayout.setSpacing();
