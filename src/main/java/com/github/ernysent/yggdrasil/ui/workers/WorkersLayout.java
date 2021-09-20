@@ -3,6 +3,7 @@ package com.github.ernysent.yggdrasil.ui.workers;
 import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import com.github.ernysent.yggdrasil.domain.Worker;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
@@ -34,8 +35,19 @@ public class WorkersLayout extends VerticalLayout {
             Dialog dialog = new Dialog();
             TextField nameField = new TextField("First Name");
             TextField lastNameField = new TextField("Last Name");
-            TextField positionField = new TextField("Position");
             TextField phoneField = new TextField("Phone number");
+
+            ComboBox<String> positionField = new ComboBox<>();
+            positionField.setItems("Painter","Assembler");
+            positionField.setLabel("Position");
+            positionField.setPlaceholder("Position");
+
+            ComboBox<Boolean> activeField = new ComboBox();
+            activeField.setLabel("Active");
+            activeField.setItems(true,false);
+
+
+//            TextField positionField = new TextField("Position");
 
             Button closeButton = new Button("Close");
             Button saveButton = new Button("Save");
@@ -51,13 +63,19 @@ public class WorkersLayout extends VerticalLayout {
                 worker.setLastName(lastNameField.getValue());
                 worker.setPosition(positionField.getValue());
                 worker.setPhoneNumber(phoneField.getValue());
+                worker.setActive(activeField.getValue());
 
 
                 workerRepository.save(worker);
                 dialog.close();
             });
-            HorizontalLayout ButtonLayout = new HorizontalLayout(closeButton,saveButton);
-            dialog.add(nameField,lastNameField,positionField,phoneField,ButtonLayout);
+
+            HorizontalLayout fieldsLayout = new HorizontalLayout(nameField,lastNameField,phoneField,phoneField,activeField);
+            fieldsLayout.setSpacing(true);
+            HorizontalLayout buttonLayout = new HorizontalLayout(closeButton,saveButton);
+            //buttonLayout.setSpacing();
+            dialog.add(fieldsLayout, buttonLayout);
+
             dialog.open();
 
 
