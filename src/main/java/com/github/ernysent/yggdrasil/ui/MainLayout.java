@@ -4,20 +4,17 @@ import com.github.ernysent.yggdrasil.ui.calculator.CalculatorView;
 import com.github.ernysent.yggdrasil.ui.calendar.CalendarView;
 import com.github.ernysent.yggdrasil.ui.home.HomeView;
 import com.github.ernysent.yggdrasil.ui.workers.WorkersView;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Header;
-import com.vaadin.flow.component.html.Nav;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.PreserveOnRefresh;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -25,6 +22,7 @@ import com.vaadin.flow.theme.Theme;
 @PWA(name = "Yggdrasil", shortName = "Yggdrasil", enableInstallPrompt = false)
 @Theme(themeFolder = "yggdrasil")
 @PageTitle("Main")
+@PreserveOnRefresh
 public class MainLayout extends AppLayout {
 
     public static class MenuItemInfo {
@@ -54,6 +52,7 @@ public class MainLayout extends AppLayout {
     }
 
     public MainLayout() {
+        System.out.println("MainLayout Constructor");
         addToNavbar(createHeaderContent());
     }
 

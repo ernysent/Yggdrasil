@@ -5,9 +5,13 @@ import com.github.ernysent.yggdrasil.domain.Worker;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridMultiSelectionModel;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +21,7 @@ import java.util.List;
 
 @UIScope
 @Component
+@PreserveOnRefresh
 public class WorkersLayout extends VerticalLayout {
 
     @Autowired
@@ -24,16 +29,38 @@ public class WorkersLayout extends VerticalLayout {
         List<Worker> workersList = new ArrayList<>();
         Grid<Worker> grid = new Grid<>(Worker.class);
         grid.setItems(workersList);
+        Div messageDiv = new Div();
         Button addWorkerButton = new Button("Add", event ->{
             Dialog dialog = new Dialog();
-            TextField nameField = new TextField("Name");
+            TextField nameField = new TextField("First Name");
+            TextField lastNameField = new TextField("Last Name");
+            TextField positionField = new TextField("Position");
+            TextField phoneField = new TextField("Phone number");
+
             Button closeButton = new Button("Close");
+            Button saveButton = new Button("Save");
+
+
             closeButton.addClickListener(click -> {
                 dialog.close();
             });
-            HorizontalLayout ButtonLayout = new HorizontalLayout(closeButton);
-            dialog.add(nameField,ButtonLayout);
+
+            saveButton.addClickListener(click -> {
+                Worker worker = new Worker();
+                worker.setFirstName(nameField.getValue());
+                worker.setLastName(lastNameField.getValue());
+                worker.setPosition(positionField.getValue());
+                worker.setPhoneNumber(phoneField.getValue());
+
+
+                workerRepository.save(worker);
+                dialog.close();
+            });
+            HorizontalLayout ButtonLayout = new HorizontalLayout(closeButton,saveButton);
+            dialog.add(nameField,lastNameField,positionField,phoneField,ButtonLayout);
             dialog.open();
+
+
             /*
             Worker w = new Worker("Steve", "Benton", "Painter", "8654321598");
 
@@ -49,28 +76,32 @@ public class WorkersLayout extends VerticalLayout {
            grid.getDataProvider().refreshAll();
         });
 
-        Worker painter = new Worker("John", "Connor", "Painter", "12345");
-        Worker assembler1 = new Worker("Leaf", "Larsen", "Assembler", "67891");
-        Worker assembler2 = new Worker("Semen", "Petrov", "Assembler", "23423");
-        //workersList.add(painter);
-        //workersList.add(assembler1);
-        //workersList.add(assembler2);
-
-        // Save to DB
-        workerRepository.save(painter);
-        workerRepository.save(assembler1);
-        workerRepository.save(assembler2);
-
         // Get Workers from DB and place in List
 
         workerRepository.findAll().forEach(workersList::add);
 
         System.out.println(workersList.size() + "<<<<<<");
-//        grid.setItems(workersList);
+
         grid.removeColumnByKey("id");
         grid.setColumns("id", "firstName", "lastName", "position", "phoneNumber");
         grid.addColumn(Worker::getActive).setHeader("Active");
-        add(addWorkerButton, removeButton, grid);
+
+        grid.setSelectionMode(Grid.SelectionMode.MULTI);
+
+        NativeButton deselectBtn = new NativeButton("Deselect all");
+        deselectBtn.addClickListener( event -> grid.asMultiSelect().deselectAll());
+        NativeButton selecctAllBtn = new NativeButton("Select all");
+        selecctAllBtn.addClickListener(
+                event -> ((GridMultiSelectionModel<Worker>) grid.getSelectionModel()).selectAll()
+                );
+
+//        grid.asSingleSelect().addValueChangeListener( event ->{
+//            String message = String.format("Selection changed from %s to %s",
+//                    event.getOldValue(),event.getValue());
+//            messageDiv.setText(message);
+//        });
+        grid.asMultiSelect().select(workersList.get(0), workersList.get(1));
+        add(addWorkerButton, removeButton, grid, messageDiv,selecctAllBtn,deselectBtn);
     }
 
 }
