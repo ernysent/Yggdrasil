@@ -66,7 +66,10 @@ public class WorkersLayout extends VerticalLayout {
 
 
                 workerRepository.save(worker);
-                grid.getDataProvider().refreshAll();
+                workersList.clear();
+                workerRepository.findAll().forEach(workersList::add);
+                grid.setItems(workersList);
+                //grid.getDataProvider().refreshAll();
                 dialog.close();
             });
 
