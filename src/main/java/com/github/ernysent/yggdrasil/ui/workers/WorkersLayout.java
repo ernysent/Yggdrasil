@@ -6,9 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.GridMultiSelectionModel;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -68,7 +66,7 @@ public class WorkersLayout extends VerticalLayout {
 
 
                 workerRepository.save(worker);
-                grid.setItems(worker);
+                grid.getDataProvider().refreshAll();
                 dialog.close();
             });
 
@@ -92,7 +90,8 @@ public class WorkersLayout extends VerticalLayout {
         });
 
         Button removeButton = new Button("Remove last", event ->{
-           workersList.remove(workersList.size()-10);
+           workersList.remove(workersList.size()-1);
+//           workerRepository.deleteById();
            grid.getDataProvider().refreshAll();
         });
 
@@ -108,12 +107,12 @@ public class WorkersLayout extends VerticalLayout {
 
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
 
-        NativeButton deselectBtn = new NativeButton("Deselect all");
-        deselectBtn.addClickListener( event -> grid.asMultiSelect().deselectAll());
-        NativeButton selecctAllBtn = new NativeButton("Select all");
-        selecctAllBtn.addClickListener(
-                event -> ((GridMultiSelectionModel<Worker>) grid.getSelectionModel()).selectAll()
-                );
+//        NativeButton deselectBtn = new NativeButton("Deselect all");
+//        deselectBtn.addClickListener( event -> grid.asMultiSelect().deselectAll());
+//        NativeButton selecctAllBtn = new NativeButton("Select all");
+//        selecctAllBtn.addClickListener(
+//                event -> ((GridMultiSelectionModel<Worker>) grid.getSelectionModel()).selectAll()
+//                );
 
 //        grid.asSingleSelect().addValueChangeListener( event ->{
 //            String message = String.format("Selection changed from %s to %s",
@@ -121,7 +120,7 @@ public class WorkersLayout extends VerticalLayout {
 //            messageDiv.setText(message);
 //        });
         grid.asMultiSelect().select(workersList.get(0), workersList.get(1));
-        add(addWorkerButton, removeButton, grid, messageDiv,selecctAllBtn,deselectBtn);
+        add(addWorkerButton, removeButton, grid, messageDiv/*,selecctAllBtn,deselectBtn*/);
     }
 
 }
