@@ -3,10 +3,10 @@ package com.github.ernysent.yggdrasil.ui.workers;
 import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import com.github.ernysent.yggdrasil.domain.Worker;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -28,7 +28,7 @@ public class WorkersLayout extends VerticalLayout {
         List<Worker> workersList = new ArrayList<>();
         Grid<Worker> grid = new Grid<>(Worker.class);
         grid.setItems(workersList);
-        Div messageDiv = new Div();
+
         Button addWorkerButton = new Button("Add", event ->{
             Dialog dialog = new Dialog();
             TextField nameField = new TextField("First Name");
@@ -40,10 +40,15 @@ public class WorkersLayout extends VerticalLayout {
             positionField.setLabel("Position");
             positionField.setPlaceholder("Position");
 
-            ComboBox<Boolean> activeField = new ComboBox();
+            Checkbox activeField = new Checkbox();
             activeField.setLabel("Active");
-            activeField.setItems(true,false);
-            activeField.setValue(false);
+            activeField.setValue(true);
+            add(activeField);
+
+//            ComboBox<Boolean> activeField = new ComboBox();
+//            activeField.setLabel("Active");
+//            activeField.setItems(true,false);
+//            activeField.setValue(false);
 
 
 //            TextField positionField = new TextField("Position");
@@ -81,21 +86,22 @@ public class WorkersLayout extends VerticalLayout {
 
             dialog.open();
 
-
-            /*
-            Worker w = new Worker("Steve", "Benton", "Painter", "8654321598");
-
-            workerRepository.save(w);
-            workerRepository.findAll().forEach(workersList::add);
-            grid.setItems(workersList);
-            */
-
         });
 
         Button removeButton = new Button("Remove last", event ->{
            workersList.remove(workersList.size()-1);
 //           workerRepository.deleteById();
            grid.getDataProvider().refreshAll();
+        });
+
+//        Edit Button
+
+
+
+        Button editButton = new Button("Edit");
+        editButton.addClickListener(click ->{
+//            get
+
         });
 
         // Get Workers from DB and place in List
@@ -108,22 +114,16 @@ public class WorkersLayout extends VerticalLayout {
         grid.setColumns("id", "firstName", "lastName", "position", "phoneNumber");
         grid.addColumn(Worker::getActive).setHeader("Active");
 
-        grid.setSelectionMode(Grid.SelectionMode.MULTI);
+        grid.asSingleSelect().setValue(workersList.get(0));
 
-//        NativeButton deselectBtn = new NativeButton("Deselect all");
-//        deselectBtn.addClickListener( event -> grid.asMultiSelect().deselectAll());
-//        NativeButton selecctAllBtn = new NativeButton("Select all");
-//        selecctAllBtn.addClickListener(
-//                event -> ((GridMultiSelectionModel<Worker>) grid.getSelectionModel()).selectAll()
-//                );
+//        Multi galocki rabotatj ne liubiat :3
 
-//        grid.asSingleSelect().addValueChangeListener( event ->{
-//            String message = String.format("Selection changed from %s to %s",
-//                    event.getOldValue(),event.getValue());
-//            messageDiv.setText(message);
-//        });
-        grid.asMultiSelect().select(workersList.get(0), workersList.get(1));
-        add(addWorkerButton, removeButton, grid, messageDiv/*,selecctAllBtn,deselectBtn*/);
+//        grid.setSelectionMode(Grid.SelectionMode.MULTI);
+//        grid.asMultiSelect().select(workersList.get(0), workersList.get(1));
+        add(addWorkerButton, removeButton,editButton, grid);
+
+
+//
     }
 
 }
