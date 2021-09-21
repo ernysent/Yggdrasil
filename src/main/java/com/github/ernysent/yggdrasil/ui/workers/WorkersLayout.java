@@ -28,9 +28,9 @@ public class WorkersLayout extends VerticalLayout {
         List<Worker> workersList = new ArrayList<>();
         Grid<Worker> grid = new Grid<>(Worker.class);
         grid.setItems(workersList);
+        Dialog dialog = new Dialog();
 
         Button addWorkerButton = new Button("Add", event ->{
-            Dialog dialog = new Dialog();
             TextField nameField = new TextField("First Name");
             TextField lastNameField = new TextField("Last Name");
             TextField phoneField = new TextField("Phone number");
@@ -100,7 +100,9 @@ public class WorkersLayout extends VerticalLayout {
 
         Button editButton = new Button("Edit");
         editButton.addClickListener(click ->{
-//            get
+            grid.asSingleSelect().getValue();
+
+            dialog.open();
 
         });
 
@@ -120,7 +122,8 @@ public class WorkersLayout extends VerticalLayout {
 
 //        grid.setSelectionMode(Grid.SelectionMode.MULTI);
 //        grid.asMultiSelect().select(workersList.get(0), workersList.get(1));
-        add(addWorkerButton, removeButton,editButton, grid);
+        HorizontalLayout remeditButton = new HorizontalLayout(removeButton,editButton);
+        add(addWorkerButton, remeditButton, grid);
 
 
 //
