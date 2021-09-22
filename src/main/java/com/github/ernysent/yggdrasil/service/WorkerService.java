@@ -27,4 +27,12 @@ public class WorkerService {
     public void deleteAll() {
         workerRepository.deleteAll();
     }
+
+    public Worker finByLastName(String lastName) {
+        return workerRepository.findByLastName(lastName);
+    }
+
+    public Worker findByLastNameAndFirstName(String lastName, String firstName) {
+        return workerRepository.findByLastNameAndFirstName(lastName,firstName);
+    }
 }

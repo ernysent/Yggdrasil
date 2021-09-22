@@ -24,18 +24,32 @@ class WorkerServiceTest {
 
     @Test
     void save() {
-        Worker worker = new Worker(
+        Worker worker1 = new Worker(
                 "Ivan",
                 "PetrovTest",
                 "Assembler",
                 "+37023423423"
                 );
 
-        workerService.save(worker);
+        Worker worker2 = new Worker(
+                "Semen",
+                "LasTest",
+                "Painter",
+                "+370565756"
+        );
+
+        workerService.save(worker1);
+        workerService.save(worker2);
+
+        Worker petrov = workerService.finByLastName("PetrovTest");
+        System.out.println("Petrov: " + petrov.getLastName());
+
+        Worker petrovic = workerService.findByLastNameAndFirstName("PetrovTest", "Ivan");
+
         Iterable<Worker> workers = workerService.findAll();
         workers.forEach(w -> {
-            System.out.println("Worker: " + worker.getId() + " -> " + worker.getLastName());
-            Assert.assertEquals(worker.getLastName(), "PetrovTest");
+            System.out.println("Worker: " + worker1.getId() + " -> " + worker1.getLastName());
+            Assert.assertEquals(worker1.getLastName(), "PetrovTest");
         });
     }
 
