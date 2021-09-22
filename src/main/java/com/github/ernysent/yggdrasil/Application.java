@@ -1,7 +1,6 @@
 package com.github.ernysent.yggdrasil;
 
 import com.github.ernysent.yggdrasil.data.WorkerRepository;
-import com.github.ernysent.yggdrasil.domain.Worker;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -31,7 +30,7 @@ public class Application extends SpringBootServletInitializer implements Applica
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("Application Run method");
+   /*     System.out.println("Application Run method");
         Worker painter = new Worker("John", "Connor", "Painter", "12345");
         Worker assembler1 = new Worker("Leaf", "Larsen", "Assembler", "67891");
         Worker assembler2 = new Worker("Semen", "Petrov", "Assembler", "23423");
@@ -43,6 +42,6 @@ public class Application extends SpringBootServletInitializer implements Applica
         workerRepository.save(painter);
         workerRepository.save(assembler1);
         workerRepository.save(assembler2);
-
+ */
     }
 }

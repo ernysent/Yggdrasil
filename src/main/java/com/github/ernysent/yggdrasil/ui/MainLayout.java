@@ -1,5 +1,7 @@
 package com.github.ernysent.yggdrasil.ui;
 
+import com.github.ernysent.yggdrasil.domain.Worker;
+import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.github.ernysent.yggdrasil.ui.calculator.CalculatorView;
 import com.github.ernysent.yggdrasil.ui.calendar.CalendarView;
 import com.github.ernysent.yggdrasil.ui.home.HomeView;
@@ -12,6 +14,7 @@ import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ import java.util.List;
 @PageTitle("Main")
 @PreserveOnRefresh
 public class MainLayout extends AppLayout {
+
+    private final WorkerService workerService;
 
     public static class MenuItemInfo {
 
@@ -51,7 +56,10 @@ public class MainLayout extends AppLayout {
 
     }
 
-    public MainLayout() {
+    @Autowired
+    public MainLayout(WorkerService workerService) {
+        this.workerService = workerService;
+        startupLoader();
         System.out.println("MainLayout Constructor");
         addToNavbar(createHeaderContent());
     }
@@ -117,6 +125,26 @@ public class MainLayout extends AppLayout {
 
         link.add(icon, text);
         return link;
+    }
+
+    private void startupLoader () {
+        List<Worker> workers = new ArrayList<>();
+        workerService.findAll().forEach(workers::add);
+        if(workers.size() == 0) {
+            System.out.println("Data Loader method");
+            Worker painter = new Worker("John", "Connor", "Painter", "12345");
+            Worker assembler1 = new Worker("Leaf", "Larsen", "Assembler", "67891");
+            Worker assembler2 = new Worker("Semen", "Petrov", "Assembler", "23423");
+            //workersList.add(painter);
+            //workersList.add(assembler1);
+            //workersList.add(assembler2);
+
+            // Save to DB
+            workerService.save(painter);
+            workerService.save(assembler1);
+            workerService.save(assembler2);
+        }
+
     }
 
 }

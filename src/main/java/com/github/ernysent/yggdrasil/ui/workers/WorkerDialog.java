@@ -1,7 +1,7 @@
 package com.github.ernysent.yggdrasil.ui.workers;
 
-import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import com.github.ernysent.yggdrasil.domain.Worker;
+import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -46,7 +46,7 @@ public class WorkerDialog extends Dialog {
         this.changeHandler = changeHandler;
     }
 
-    public WorkerDialog(WorkerRepository workerRepository){
+    public WorkerDialog(WorkerService workerService){
 
         // Design
 
@@ -84,7 +84,7 @@ public class WorkerDialog extends Dialog {
             worker.setActive(activeField.getValue());
 
 
-            workerRepository.save(worker);
+            workerService.save(worker);
 
             changeHandler.onChange();
             //grid.getDataProvider().refreshAll();

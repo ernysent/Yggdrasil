@@ -1,7 +1,7 @@
 package com.github.ernysent.yggdrasil.ui.workers;
 
-import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import com.github.ernysent.yggdrasil.domain.Worker;
+import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
@@ -22,7 +22,7 @@ public class WorkersLayout extends VerticalLayout {
 
     @Autowired
     public WorkersLayout(
-            WorkerRepository workerRepository,
+            WorkerService workerService,
             WorkerDialog workerDialog
     ) {
         List<Worker> workersList = new ArrayList<>();
@@ -39,13 +39,14 @@ public class WorkersLayout extends VerticalLayout {
         removeButton.addClickListener( click ->{
             Worker worker = grid.asSingleSelect().getValue();
             if (worker != null){
-                workerRepository.delete(worker);
-                workerRepository.findAll().forEach(workersList::add);
+                workersList.clear();
+                workerService.delete(worker);
+                workerService.findAll().forEach(workersList::add);
                 grid.setItems(workersList);
                 //workersList.remove(worker);
                 //grid.getDataProvider().refreshAll();
 
-            }else { Notification.show("Please select Worker");};
+            }else { Notification.show("Please select Worker");}
 
 
         });
@@ -67,7 +68,7 @@ public class WorkersLayout extends VerticalLayout {
 
         // Get Workers from DB and place in List
 
-        workerRepository.findAll().forEach(workersList::add);
+        workerService.findAll().forEach(workersList::add);
 
         System.out.println(workersList.size() + "<<<<<<");
 
@@ -87,7 +88,7 @@ public class WorkersLayout extends VerticalLayout {
         // Events
         workerDialog.setChangeHandler(() -> {
             workersList.clear();
-            workerRepository.findAll().forEach(workersList::add);
+            workerService.findAll().forEach(workersList::add);
             grid.setItems(workersList);
         });
 //
