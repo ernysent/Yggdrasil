@@ -41,11 +41,9 @@ public class WorkersLayout extends VerticalLayout {
             if (worker != null){
                 workersList.clear();
                 workerService.delete(worker);
-                workerService.findAll().forEach(workersList::add);
-                grid.setItems(workersList);
-                //workersList.remove(worker);
-                //grid.getDataProvider().refreshAll();
+                List<Worker> l = workerService.findAll();
 
+                grid.setItems(l);
             }else { Notification.show("Please select Worker");}
 
 

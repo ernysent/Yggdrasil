@@ -1,10 +1,12 @@
 package com.github.ernysent.yggdrasil;
 
+import com.github.ernysent.yggdrasil.service.ProdCalcService;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-     ProdCalc prodCalc = new ProdCalc();
+     ProdCalcService prodCalc = new ProdCalcService();
 
     start();
     Scanner scanner = new Scanner(System.in);

@@ -1,5 +1,5 @@
 package com.github.ernysent.yggdrasil.ui.calculator;
-import com.github.ernysent.yggdrasil.ProdCalc;
+import com.github.ernysent.yggdrasil.service.ProdCalcService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
@@ -40,7 +40,7 @@ public class CalculatorView extends VerticalLayout{
     count.addClickListener(e -> {
       Notification.show( boxes.getValue() + " Boxes");
       int boxesValue = Integer.parseInt(boxes.getValue());
-      ProdCalc prodCalc = new ProdCalc();
+      ProdCalcService prodCalc = new ProdCalcService();
       int meters = prodCalc.calcMeters(boxesValue);
       int board = prodCalc.calcBoard(boxesValue);
       double remains = prodCalc.calcRemains(boxesValue,board);

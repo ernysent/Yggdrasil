@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import org.springframework.stereotype.Component;
@@ -83,8 +84,9 @@ public class WorkerDialog extends Dialog {
             worker.setPhoneNumber(phoneField.getValue());
             worker.setActive(activeField.getValue());
 
-
-            workerService.save(worker);
+            if (!workerService.save(worker)) {
+                Notification.show("Please enter another Worker");
+            }
 
             changeHandler.onChange();
             //grid.getDataProvider().refreshAll();

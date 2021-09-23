@@ -1,9 +1,6 @@
-package com.github.ernysent.yggdrasil;
+package com.github.ernysent.yggdrasil.service;
 
-import java.text.DecimalFormat;
-import java.util.Scanner;
-
-public class ProdCalc {
+public class ProdCalcService {
 
     public static int calcMeters(int box) {
         int metrs = box*5;

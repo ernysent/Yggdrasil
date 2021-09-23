@@ -128,8 +128,7 @@ public class MainLayout extends AppLayout {
     }
 
     private void startupLoader () {
-        List<Worker> workers = new ArrayList<>();
-        workerService.findAll().forEach(workers::add);
+        List<Worker> workers = workerService.findAll();
         if(workers.size() == 0) {
             System.out.println("Data Loader method");
             Worker painter = new Worker("John", "Connor", "Painter", "12345");
