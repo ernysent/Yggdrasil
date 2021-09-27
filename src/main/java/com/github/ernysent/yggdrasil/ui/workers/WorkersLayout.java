@@ -4,21 +4,25 @@ import com.github.ernysent.yggdrasil.domain.Worker;
 import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.spring.annotation.UIScope;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @UIScope
 @Component
 @PreserveOnRefresh
 public class WorkersLayout extends VerticalLayout {
+
+    private Grid<Worker> grid = new Grid<>(Worker.class);
 
     @Autowired
     public WorkersLayout(
@@ -26,27 +30,26 @@ public class WorkersLayout extends VerticalLayout {
             WorkerDialog workerDialog
     ) {
         List<Worker> workersList = new ArrayList<>();
-        Grid<Worker> grid = new Grid<>(Worker.class);
         grid.setItems(workersList);
+
+
 
         Button addWorkerButton = new Button("Add", event ->
         {
-                workerDialog.setSetWorker(null);
-                workerDialog.open();
+            workerDialog.setSetWorker(null);
+            workerDialog.open();
         });
 
         Button removeButton = new Button("Remove");
         removeButton.addClickListener( click ->{
             Worker worker = grid.asSingleSelect().getValue();
             if (worker != null){
-                workersList.clear();
                 workerService.delete(worker);
-                List<Worker> l = workerService.findAll();
-
-                grid.setItems(l);
-            }else { Notification.show("Please select Worker");}
-
-
+                grid.setItems(workerService.findAll());
+                setCounter(workerService.findAll().size());
+            } else {
+                Notification.show("Please select Worker");
+            }
         });
 
 //        Edit Button
@@ -72,7 +75,24 @@ public class WorkersLayout extends VerticalLayout {
 
         grid.removeColumnByKey("id");
         grid.setColumns("id", "firstName", "lastName", "position", "phoneNumber");
-        grid.addColumn(Worker::getActive).setHeader("Active");
+        grid.addComponentColumn(item ->
+            {
+                Icon icon;
+                if (item.getActive()){
+                    icon = VaadinIcon.CHECK.create();
+                    icon.setColor("green");
+                } else {
+                    icon = VaadinIcon.CLOSE_SMALL.create();
+                    icon.setColor("red");
+                }
+                return icon;
+            })
+            .setKey("active")
+            .setHeader("Active")
+            .setComparator(Comparator.comparing(Worker::getActive))
+//        ;
+//        grid.addColumn(Worker::getActive).setHeader("Active")
+            .setFooter("Total: " + workersList.size() + " people");
 
         grid.asSingleSelect().setValue(workersList.get(0));
 
@@ -83,13 +103,20 @@ public class WorkersLayout extends VerticalLayout {
         HorizontalLayout remeditButton = new HorizontalLayout(removeButton,editButton);
         add(addWorkerButton, remeditButton, grid);
 
+        //grid.addColumn(Worker::getFirstName).setHeader("First Name")
+
+
         // Events
         workerDialog.setChangeHandler(() -> {
-            workersList.clear();
-            workerService.findAll().forEach(workersList::add);
-            grid.setItems(workersList);
+            grid.setItems(workerService.findAll());
+            setCounter(workerService.findAll().size());
         });
 //
+    }
+
+    private void setCounter(int size) {
+        grid.getFooterRows().get(0).getCells().get(5)
+            .setText("Total: " + size + " people");
     }
 
 }

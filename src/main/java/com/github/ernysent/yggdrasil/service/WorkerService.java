@@ -28,7 +28,7 @@ public class WorkerService {
     public boolean save(Worker worker) {
         Worker workerInRepo = workerRepository.findByLastName(worker.getLastName());
         System.out.println(workerInRepo);
-        if (workerInRepo == null) {
+        if ((workerInRepo == null) || (worker.getId() != null)) {
             workerRepository.save(worker);
             System.out.println("Saved)");
             return  true;

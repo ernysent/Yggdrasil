@@ -56,7 +56,7 @@ public class ProdCalcService {
 //
 //        double squa = (0.5*0.4)*4+(0.4*0.4)*2;
 //        double dye = 0.1;
-//        double sumdye = squa*box*dye;
+//        double sumdye = squa*box*dye; JUG
 //
 //        System.out.print("количество краски: ");
 //        System.out.format("%.3f",sumdye);
