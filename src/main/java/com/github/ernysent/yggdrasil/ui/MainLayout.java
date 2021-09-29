@@ -98,7 +98,7 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("Calculator", "la la-file", CalculatorView.class),//
 
-                new MenuItemInfo("Clendar", "la la-file", CalendarView.class),//
+                new MenuItemInfo("Calendar", "la la-file", CalendarView.class),//
 
         };
         List<RouterLink> links = new ArrayList<>();

@@ -1,11 +1,18 @@
 package com.github.ernysent.yggdrasil.ui.calendar;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.PageTitle;
 import com.github.ernysent.yggdrasil.ui.MainLayout;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.PreserveOnRefresh;
+import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("Calendar")
 @Route(value = "calendar", layout = MainLayout.class)
+@PreserveOnRefresh
 public class CalendarView extends HorizontalLayout{
-
+  @Autowired
+  public CalendarView(CalendarLayout calendarLayout){
+    System.out.println(calendarLayout);
+    add(calendarLayout);
+  }
 }
