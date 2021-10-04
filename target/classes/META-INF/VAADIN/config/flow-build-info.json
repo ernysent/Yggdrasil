@@ -1,0 +1,9 @@
+{
+  "compatibilityMode": false,
+  "productionMode": false,
+  "npmFolder": "C:\\Users\\Nastia\\Yggdrasil",
+  "generatedFolder": "C:\\Users\\Nastia\\Yggdrasil\\target\\frontend",
+  "frontendFolder": "C:\\Users\\Nastia\\Yggdrasil\\frontend",
+  "pnpm.enable": false,
+  "require.home.node": false
+}
