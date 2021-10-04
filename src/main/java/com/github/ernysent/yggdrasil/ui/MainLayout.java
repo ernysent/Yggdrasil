@@ -1,6 +1,8 @@
 package com.github.ernysent.yggdrasil.ui;
 
+import com.github.ernysent.yggdrasil.domain.Shifts;
 import com.github.ernysent.yggdrasil.domain.Worker;
+import com.github.ernysent.yggdrasil.service.ShiftsService;
 import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.github.ernysent.yggdrasil.ui.calculator.CalculatorView;
 import com.github.ernysent.yggdrasil.ui.calendar.CalendarView;
@@ -14,6 +16,7 @@ import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ import java.util.List;
 public class MainLayout extends AppLayout {
 
     private final WorkerService workerService;
+    private final ShiftsService shiftsService;
 
     public static class MenuItemInfo {
 
@@ -57,8 +61,12 @@ public class MainLayout extends AppLayout {
     }
 
     @Autowired
-    public MainLayout(WorkerService workerService) {
+    public MainLayout(
+        WorkerService workerService,
+        ShiftsService shiftsService)
+    {
         this.workerService = workerService;
+        this.shiftsService = shiftsService;
         startupLoader();
         System.out.println("MainLayout Constructor");
         addToNavbar(createHeaderContent());
@@ -129,6 +137,7 @@ public class MainLayout extends AppLayout {
 
     private void startupLoader () {
         List<Worker> workers = workerService.findAll();
+        List<Shifts> shifts = shiftsService.findAll();
         if(workers.size() == 0) {
             System.out.println("Data Loader method");
             Worker painter = new Worker("John", "Connor", "Painter", "12345");
@@ -143,6 +152,12 @@ public class MainLayout extends AppLayout {
             workerService.save(assembler1);
             workerService.save(assembler2);
         }
+        if (shifts.size() == 0){
+            System.out.println("Calendar Loader method");
+            Shifts bigBang = new Shifts(LocalDate.now(), workerService.findAll());
+            shiftsService.save(bigBang);
+        }
+
 
     }
 

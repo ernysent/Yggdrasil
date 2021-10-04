@@ -4,6 +4,7 @@ import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Shifts {
 
   private LocalDate data;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   private List<Worker> worker;
 
   public Shifts(){}
@@ -34,7 +35,7 @@ public class Shifts {
 
   public LocalDate getData(){return data;}
   public void setData(LocalDate date){this.data = date;}
-  public List<Worker> getWorker(){return worker;}
-  public void setWorker(List<Worker> worker){this.worker = worker;}
+  public List<Worker> getWorkers(){return worker;}
+  public void setWorkers(List<Worker> worker){this.worker = worker;}
 
 }
