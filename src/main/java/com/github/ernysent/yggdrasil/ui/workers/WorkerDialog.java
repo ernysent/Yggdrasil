@@ -64,7 +64,7 @@ public class WorkerDialog extends Dialog {
         Button saveButton = new Button("Save");
         HorizontalLayout fieldsLayout = new HorizontalLayout(nameField,lastNameField,positionField,phoneField,activeField);
         fieldsLayout.setSpacing(true);
-        HorizontalLayout buttonLayout = new HorizontalLayout(closeButton,saveButton);
+        HorizontalLayout buttonLayout = new HorizontalLayout(saveButton, closeButton);
         //buttonLayout.setSpacing();
         add(fieldsLayout, buttonLayout);
 

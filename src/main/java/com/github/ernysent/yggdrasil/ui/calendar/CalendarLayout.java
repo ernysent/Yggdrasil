@@ -19,7 +19,8 @@ public class CalendarLayout extends VerticalLayout {
   @Autowired
   public CalendarLayout(
       ShiftsGrid shiftsGrid,
-      ShiftsService shiftsService
+      ShiftsService shiftsService,
+      ShiftsDialog shiftsDialog
       ){
 
     DatePicker valueDatePicker = new DatePicker();
@@ -27,6 +28,10 @@ public class CalendarLayout extends VerticalLayout {
     valueDatePicker.setValue(now);
 
     Button createShifts = new Button("Create");
+
+    createShifts.addClickListener( click ->{
+      shiftsDialog.open();
+    });
 
     HorizontalLayout shiftsDateAndCreate = new HorizontalLayout(valueDatePicker,createShifts);
     add(shiftsDateAndCreate, shiftsGrid);
