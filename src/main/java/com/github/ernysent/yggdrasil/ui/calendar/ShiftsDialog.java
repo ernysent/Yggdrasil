@@ -1,6 +1,7 @@
 package com.github.ernysent.yggdrasil.ui.calendar;
 
 import com.github.ernysent.yggdrasil.domain.Worker;
+import com.github.ernysent.yggdrasil.service.WorkerService;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
@@ -15,19 +16,25 @@ import org.springframework.stereotype.Component;
 @VaadinSessionScope
 public class ShiftsDialog extends Dialog {
 
-  private DatePicker shiftDateField  = new DatePicker("Data");
+  private DatePicker shiftDateField  = new DatePicker();
   private Grid<Worker> workersGridField = new Grid<>(Worker.class);
+  private Button closeButton = new Button("Close");
+  private Button saveButton = new Button("Save");
+  private Button addWorkerButton = new Button("add");
+  private Button removeButton = new Button("remove");
 
+  public ShiftsDialog(shiftWorkerDialog shiftWorkerDialog) {
 
-  public ShiftsDialog() {
-
+    setAriaLabel("Data");
     shiftDateField.setValue(LocalDate.now());
 
-    workersGridField.setColumns("firstName","lastName");
+    workersGridField.setColumns("firstName","lastName","position");
 
-    Button closeButton = new Button("Close");
-    Button saveButton = new Button("Save");
-    Button addWorkerButton = new Button("add");
+
+    addWorkerButton.addClickListener(click ->{
+      shiftWorkerDialog.open();
+
+    });
 
     //Event
 
@@ -40,8 +47,8 @@ public class ShiftsDialog extends Dialog {
 
 // Button location
     HorizontalLayout buttonsLayout = new HorizontalLayout(saveButton,closeButton);
-    HorizontalLayout fieldsLayout = new HorizontalLayout(shiftDateField,workersGridField);
-    add(fieldsLayout,addWorkerButton,buttonsLayout);
+    HorizontalLayout fieldsLayout = new HorizontalLayout(shiftDateField,addWorkerButton,removeButton);
+    add(fieldsLayout,workersGridField,buttonsLayout);
   }
 
 }

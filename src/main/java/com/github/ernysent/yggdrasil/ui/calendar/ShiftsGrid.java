@@ -18,6 +18,7 @@ public class ShiftsGrid  extends VerticalLayout {
       ShiftsService shiftsService = new ShiftsService();
       grid.addColumn(Shifts::getData).setHeader("Date");
       grid.addColumn(shifts -> shifts.getWorkers().size()).setHeader("Workers");
+//      grid.setColumns("date","workers");
       add(grid);
     }
 
