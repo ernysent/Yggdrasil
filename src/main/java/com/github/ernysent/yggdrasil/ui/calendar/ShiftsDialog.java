@@ -2,9 +2,11 @@ package com.github.ernysent.yggdrasil.ui.calendar;
 
 import com.github.ernysent.yggdrasil.domain.Worker;
 import com.github.ernysent.yggdrasil.service.WorkerService;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
@@ -24,11 +26,11 @@ public class ShiftsDialog extends Dialog {
   private Button removeButton = new Button("remove");
 
   public ShiftsDialog(shiftWorkerDialog shiftWorkerDialog) {
-
-    setAriaLabel("Data");
+    setWidth(800, Unit.PIXELS);
+    Label dates = new Label("Data");
     shiftDateField.setValue(LocalDate.now());
 
-    workersGridField.setColumns("firstName","lastName","position");
+    workersGridField.setColumns("firstName","lastName","position","phoneNumber");
 
 
     addWorkerButton.addClickListener(click ->{
@@ -48,7 +50,7 @@ public class ShiftsDialog extends Dialog {
 // Button location
     HorizontalLayout buttonsLayout = new HorizontalLayout(saveButton,closeButton);
     HorizontalLayout fieldsLayout = new HorizontalLayout(shiftDateField,addWorkerButton,removeButton);
-    add(fieldsLayout,workersGridField,buttonsLayout);
+    add(dates,fieldsLayout,workersGridField,buttonsLayout);
   }
 
 }
