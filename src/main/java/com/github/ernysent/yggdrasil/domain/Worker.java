@@ -67,5 +67,21 @@ public class Worker {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (id == null) {
+            return super.equals(other);
+        }
+
+        return this == other || other instanceof Worker && id.equals(((Worker) other).id);
+    }
+
+    @Override
+    public int hashCode(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(id);
+        return builder.toString().hashCode();
+    }
+
 }
 

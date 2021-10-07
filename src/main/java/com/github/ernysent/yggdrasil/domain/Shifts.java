@@ -1,16 +1,14 @@
 package com.github.ernysent.yggdrasil.domain;
 
-import com.github.ernysent.yggdrasil.data.WorkerRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 // JPA / Hibernate
 
@@ -23,19 +21,38 @@ public class Shifts {
   private LocalDate data;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  private List<Worker> worker;
+  private List<Worker> workers = new ArrayList<>();
 
   public Shifts(){}
 
   public Shifts(LocalDate date, List<Worker> worker){
     super();
     this.data = date;
-    this.worker = worker;
+    this.workers = worker;
   }
 
   public LocalDate getData(){return data;}
   public void setData(LocalDate date){this.data = date;}
-  public List<Worker> getWorkers(){return worker;}
-  public void setWorkers(List<Worker> worker){this.worker = worker;}
+  public List<Worker> getWorkers(){return workers;}
+  public void setWorkers(List<Worker> worker){this.workers = worker;}
 
+  public void addWorker(Worker worker) {
+    workers.add(worker);
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    if (id == null) {
+      return super.equals(other);
+    }
+
+    return this == other || other instanceof Shifts && id.equals(((Shifts) other).id);
+  }
+
+  @Override
+  public int hashCode(){
+    StringBuilder builder = new StringBuilder();
+    builder.append(id);
+    return builder.toString().hashCode();
+  }
 }
