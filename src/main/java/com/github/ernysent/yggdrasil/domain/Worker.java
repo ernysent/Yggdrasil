@@ -27,7 +27,7 @@ public class Worker {
         this.lastName = lastName;
         this.position = position;
         this.phoneNumber = phoneNumber;
-        this.active = false;
+        this.active = true;
     }
 
     public Long getId() {

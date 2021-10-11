@@ -35,12 +35,12 @@ public class ShiftsService {
 
   public boolean save(Shifts shift) {
     Shifts shiftsInRepo = findByDate(shift.getData());
-    System.out.println(shiftsInRepo);
-    if ((shiftsInRepo == null)){
+    System.out.println("shiftsInRepo: " + shiftsInRepo);
+    if (shiftsInRepo == null){
       shiftsRepository.save(shift);
       System.out.println("Saved");
       return true;
-    }else {
+    } else {
       System.out.println("None");
       return false;
     }

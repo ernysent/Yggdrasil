@@ -80,16 +80,16 @@ public class ShiftCreateDialog extends Dialog {
 
     saveButton.addClickListener(click->{
       shift.setData(shiftDateField.getValue());
-      shiftsService.save(shift);
 
-      shiftsGrid.setItems(shiftsService.findAll());
-      System.out.println("Save Shift");
       if (!shiftsService.save(shift)){
-        Notification.show( "Shift this date:"+shift.getData()+"already added");
-
+        Notification notification = new Notification();
+        Notification.show( "Shift at this date: "+shift.getData()+" already exists");
+      } else {
+        shiftsService.save(shift);
+        System.out.println("Save Shift");
+        close();
+        shiftsGrid.setItems(shiftsService.findAll());
       }
-      close();
-
     });
   }
 
