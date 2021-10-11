@@ -7,9 +7,12 @@ import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import com.vaadin.flow.component.button.Button;
 import java.time.LocalDate;
@@ -40,15 +43,19 @@ public class ShiftCreateDialog extends Dialog {
     this.shiftsGrid = shiftsGrid;
 
     // Design
+
     setWidth(800, Unit.PIXELS);
     Label dates = new Label("Data");
     shiftDateField.setValue(LocalDate.now());
+
 
     workersGridField.setColumns("firstName","lastName","position","phoneNumber");
     // Button location
     HorizontalLayout buttonsLayout = new HorizontalLayout(saveButton,closeButton);
     HorizontalLayout fieldsLayout = new HorizontalLayout(shiftDateField,addWorkerButton,removeButton);
-    add(dates,fieldsLayout,workersGridField,buttonsLayout);
+    VerticalLayout layout = new VerticalLayout();
+    layout.add( new H2("Create shift"));
+    add(layout,dates,fieldsLayout,workersGridField,buttonsLayout);
 
     //Events
     addWorkerButton.addClickListener(click -> {

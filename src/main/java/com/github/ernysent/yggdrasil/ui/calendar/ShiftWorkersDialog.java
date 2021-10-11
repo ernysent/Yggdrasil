@@ -8,6 +8,7 @@ import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
@@ -69,9 +70,11 @@ public class ShiftWorkersDialog extends Dialog {
       close();
     });
 
+    HorizontalLayout layout = new HorizontalLayout();
+    layout.add(new H2("Add workers to shift"));
     HorizontalLayout searchLayout = new HorizontalLayout(addSearchWorkerButton);
     HorizontalLayout buttonLayout = new HorizontalLayout(addWorkersButton,closeButton);
-    add(search,searchLayout,label2,gridActiveWorkers,buttonLayout);
+    add(layout,search,searchLayout,label2,gridActiveWorkers,buttonLayout);
 
   }
 
