@@ -11,12 +11,13 @@ C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\domain\Shi
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\Application.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\data\WorkerRepository.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\service\ProdCalcService.java
-C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\calendar\ShiftsDialog.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\helloworld\HelloWorldView.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\service\WorkerService.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\MainLayout.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\Main.java
+C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\calendar\ShiftDialog.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\workers\WorkersLayout.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\calendar\CalendarLayout.java
+C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\calendar\ShiftWorkersDialog.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\signIn\SignInView.java
 C:\Users\Nastia\Yggdrasil\src\main\java\com\github\ernysent\yggdrasil\ui\about\AboutView.java
