@@ -9,7 +9,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import java.util.ArrayList;
@@ -31,13 +30,13 @@ public class ShiftWorkersDialog extends Dialog {
 
   private Grid<Worker> gridActiveWorkers = new Grid<>(Worker.class);
 
-  ShiftDialog shiftsDialog;
+  ShiftCreateDialog shiftsDialog;
 
   public Worker getSelectedWorker() {
     return gridActiveWorkers.asSingleSelect().getValue();
   }
 
-  public interface AddWorkerHandler {
+    public interface AddWorkerHandler {
     void onAdd();
   }
 

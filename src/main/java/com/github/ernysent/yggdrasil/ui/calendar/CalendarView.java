@@ -13,19 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CalendarView extends HorizontalLayout{
 
   @Autowired
-  public CalendarView(CalendarLayout calendarLayout, ShiftDialog shiftsDialog){
-    System.out.println(calendarLayout);
+  public CalendarView(CalendarLayout calendarLayout, ShiftCreateDialog shiftsDialog){
     add(calendarLayout);
-
     Shifts shifts = new Shifts();
-
-    /*
-    shifts.setData(LocalDate.now());
-    List<Worker> workers = new ArrayList<>();
-    workers.add(new Worker());
-
-    shifts.setWorker(workers);
-    */
 
   }
 }

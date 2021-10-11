@@ -20,7 +20,7 @@ public class CalendarLayout extends VerticalLayout {
   public CalendarLayout(
       ShiftsGrid shiftsGrid,
       ShiftsService shiftsService,
-      ShiftDialog shiftsDialog
+      ShiftCreateDialog shiftsDialog
       ){
 
     DatePicker valueDatePicker = new DatePicker();

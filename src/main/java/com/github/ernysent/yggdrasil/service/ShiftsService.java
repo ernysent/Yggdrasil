@@ -22,6 +22,10 @@ public class ShiftsService {
     return shifts;
   }
 
+  public void delete(Shifts shifts){
+    shiftsRepository.delete(shifts);
+  }
+
 
 //  public List<Worker> findActive(){
 //    List<Worker> workers = new ArrayList<>();
