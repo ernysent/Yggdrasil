@@ -33,8 +33,21 @@ public class ShiftsService {
 //    return ;
 //  }
 
-  public void save(Shifts bigBang) {
-    shiftsRepository.save(bigBang);
+  public boolean save(Shifts shift) {
+    Shifts shiftsInRepo = findByDate(shift.getData());
+    System.out.println(shiftsInRepo);
+    if ((shiftsInRepo == null)){
+      shiftsRepository.save(shift);
+      System.out.println("Saved");
+      return true;
+    }else {
+      System.out.println("None");
+      return false;
+    }
+  }
+
+  public Shifts findByDate(LocalDate date){
+    return shiftsRepository.findByDate(date);
   }
 
 

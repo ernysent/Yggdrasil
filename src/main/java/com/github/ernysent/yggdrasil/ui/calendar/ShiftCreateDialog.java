@@ -17,6 +17,7 @@ import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import com.vaadin.flow.component.button.Button;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JColorChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -78,14 +79,16 @@ public class ShiftCreateDialog extends Dialog {
       });
 
     saveButton.addClickListener(click->{
-//      shiftsGrid.add(shiftDateField,workersGridField);
       shift.setData(shiftDateField.getValue());
       shiftsService.save(shift);
 
       shiftsGrid.setItems(shiftsService.findAll());
       System.out.println("Save Shift");
+      if (!shiftsService.save(shift)){
+        Notification.show( "Shift this date:"+shift.getData()+"already added");
+
+      }
       close();
-//      workersGridField.removeAllColumns();
 
     });
   }

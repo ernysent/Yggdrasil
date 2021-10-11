@@ -18,7 +18,7 @@ public class Shifts {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  private LocalDate data;
+  private LocalDate date;
 
   @ManyToMany(fetch = FetchType.EAGER)
   private List<Worker> workers = new ArrayList<>();
@@ -27,12 +27,12 @@ public class Shifts {
 
   public Shifts(LocalDate date, List<Worker> worker){
     super();
-    this.data = date;
+    this.date = date;
     this.workers = worker;
   }
 
-  public LocalDate getData(){return data;}
-  public void setData(LocalDate date){this.data = date;}
+  public LocalDate getData(){return date;}
+  public void setData(LocalDate date){this.date = date;}
   public List<Worker> getWorkers(){return workers;}
   public void setWorkers(List<Worker> worker){this.workers = worker;}
 

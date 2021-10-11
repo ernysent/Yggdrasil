@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShiftsRepository extends CrudRepository<Shifts, Long>{
+  public Shifts findByDate(LocalDate date);
 
 }
