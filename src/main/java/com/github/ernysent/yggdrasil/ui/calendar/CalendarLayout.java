@@ -35,10 +35,8 @@ public class CalendarLayout extends VerticalLayout {
       shiftsDialog.createShift(valueDatePicker.getValue());
     });
 
-    HorizontalLayout layout = new HorizontalLayout();
-    layout.add(new H1("Calendar"));
     HorizontalLayout shiftsDateAndCreate = new HorizontalLayout(valueDatePicker,createShifts);
-    add(layout,shiftsDateAndCreate, shiftsGrid);
+    add(shiftsDateAndCreate, shiftsGrid);
 
     shiftsGrid.setItems(shiftsService.findAll());
 
