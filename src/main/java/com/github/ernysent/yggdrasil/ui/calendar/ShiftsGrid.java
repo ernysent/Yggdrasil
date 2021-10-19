@@ -14,10 +14,15 @@ import org.springframework.stereotype.Component;
 @PreserveOnRefresh
 public class ShiftsGrid  extends VerticalLayout {
     private  Grid<Shifts> grid = new Grid();
+
     public  ShiftsGrid () {
       grid.addColumn(Shifts::getData).setHeader("Date");
       grid.addColumn(shifts -> shifts.getWorkers().size()).setHeader("Workers");
       add(grid);
+
+      grid.addItemDoubleClickListener(event ->{
+        System.out.println("Duoble click");
+      });
 
     }
 

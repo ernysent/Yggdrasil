@@ -1,6 +1,7 @@
 package com.github.ernysent.yggdrasil.ui.calendar;
 
 
+import com.github.ernysent.yggdrasil.data.ShiftsRepository;
 import com.github.ernysent.yggdrasil.domain.Shifts;
 import com.github.ernysent.yggdrasil.service.ShiftsService;
 import com.vaadin.flow.component.button.Button;
@@ -24,7 +25,6 @@ public class ShiftDialog extends Dialog {
   @Autowired
   public  ShiftDialog(
       ShiftCreateDialog shiftCreateDialog
-      //ShiftsService shiftsService
       ){
     add(nameField,gridWorkersShiftField,closeButton,editButton);
 

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @PreserveOnRefresh
 public class CalendarLayout extends VerticalLayout {
-  
+
   @Autowired
   public CalendarLayout(
       ShiftsGrid shiftsGrid,
@@ -31,14 +31,14 @@ public class CalendarLayout extends VerticalLayout {
 
     Button createShifts = new Button("Create");
 
-    createShifts.addClickListener( click ->{
-      shiftCreateDialog.open();
-      shiftCreateDialog.createShift(valueDatePicker.getValue());
-    });
 
     HorizontalLayout shiftsDateAndCreate = new HorizontalLayout(valueDatePicker,createShifts);
     add(shiftsDateAndCreate, shiftsGrid);
 
+    createShifts.addClickListener( click ->{
+      shiftCreateDialog.open();
+      shiftCreateDialog.createShift(valueDatePicker.getValue());
+    });
 
     shiftsGrid.setItems(shiftsService.findAll());
 
