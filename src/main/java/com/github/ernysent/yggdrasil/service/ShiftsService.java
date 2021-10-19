@@ -26,13 +26,6 @@ public class ShiftsService {
     shiftsRepository.delete(shifts);
   }
 
-
-//  public List<Worker> findActive(){
-//    List<Worker> workers = new ArrayList<>();
-//    workerRepository.
-//    return ;
-//  }
-
   public boolean save(Shifts shift) {
     Shifts shiftsInRepo = findByDate(shift.getData());
     System.out.println("shiftsInRepo: " + shiftsInRepo);

@@ -35,7 +35,7 @@ public class ShiftCreateDialog extends Dialog {
   private Shifts shift;
   private final ShiftsGrid shiftsGrid;
 
-  //@Autowired
+  @Autowired
   public ShiftCreateDialog(
       ShiftWorkersDialog shiftWorkerDialog,
       ShiftsGrid shiftsGrid,
@@ -65,6 +65,19 @@ public class ShiftCreateDialog extends Dialog {
 
     closeButton.addClickListener(click ->{
       close();
+    });
+
+    removeButton.addClickListener(click ->{
+      Worker worker = workersGridField.asSingleSelect().getValue();
+      if (worker!= null){
+        shift.deleteWorker(worker);
+        workersGridField.setItems(shift.getWorkers());
+        
+        Notification.show("Worker deleted");
+      }else {
+        Notification.show("Please select Worker");
+      }
+
     });
 
       shiftWorkerDialog.setAddWorkerHandler(() -> {

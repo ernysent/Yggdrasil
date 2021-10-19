@@ -40,6 +40,8 @@ public class Shifts {
     workers.add(worker);
   }
 
+  public void deleteWorker(Worker worker){workers.remove(worker);}
+
   @Override
   public boolean equals(Object other) {
     if (id == null) {

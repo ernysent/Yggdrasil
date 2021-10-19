@@ -4,7 +4,6 @@ import com.github.ernysent.yggdrasil.domain.Shifts;
 import com.github.ernysent.yggdrasil.service.ShiftsService;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PreserveOnRefresh;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @PreserveOnRefresh
 public class CalendarLayout extends VerticalLayout {
-
+  
   @Autowired
   public CalendarLayout(
       ShiftsGrid shiftsGrid,
@@ -39,10 +38,8 @@ public class CalendarLayout extends VerticalLayout {
 
     HorizontalLayout shiftsDateAndCreate = new HorizontalLayout(valueDatePicker,createShifts);
     add(shiftsDateAndCreate, shiftsGrid);
-//
-//    shiftsGrid.addClickListener(clickEvent -> {
-//      LocalDate date = shiftsGrid.asSingleSelect().getValue();
-//    });
+
+
     shiftsGrid.setItems(shiftsService.findAll());
 
 //    valueDatePicker.setValue( EVENT -> {

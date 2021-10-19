@@ -23,9 +23,8 @@ public class ShiftDialog extends Dialog {
 
   @Autowired
   public  ShiftDialog(
-      Shifts shifts,
-      ShiftCreateDialog shiftCreateDialog,
-      ShiftsService shiftsService
+      ShiftCreateDialog shiftCreateDialog
+      //ShiftsService shiftsService
       ){
     add(nameField,gridWorkersShiftField,closeButton,editButton);
 

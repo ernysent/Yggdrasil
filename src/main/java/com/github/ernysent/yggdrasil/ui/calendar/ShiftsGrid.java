@@ -15,11 +15,10 @@ import org.springframework.stereotype.Component;
 public class ShiftsGrid  extends VerticalLayout {
     private  Grid<Shifts> grid = new Grid();
     public  ShiftsGrid () {
-      ShiftsService shiftsService = new ShiftsService();
       grid.addColumn(Shifts::getData).setHeader("Date");
       grid.addColumn(shifts -> shifts.getWorkers().size()).setHeader("Workers");
-//      grid.setColumns("date","workers");
       add(grid);
+
     }
 
   public void setItems(List<Shifts> all) {

@@ -21,9 +21,7 @@ import org.springframework.stereotype.Component;
 @VaadinSessionScope
 public class ShiftWorkersDialog extends Dialog {
   private Button addSearchWorkerButton = new Button("Add");
-  private Button removeButton = new Button("Remove");
   private Button addWorkersButton = new Button("Add");
-  private Button saveButton = new Button("Save");
   private Button closeButton = new Button("Close");
   private Label search = new Label("Search");
   private Label label2 = new Label("Workers active list");
@@ -31,7 +29,7 @@ public class ShiftWorkersDialog extends Dialog {
 
   private Grid<Worker> gridActiveWorkers = new Grid<>(Worker.class);
 
-  ShiftCreateDialog shiftsDialog;
+  ShiftCreateDialog shiftCreateDialog;
 
   public Worker getSelectedWorker() {
     return gridActiveWorkers.asSingleSelect().getValue();
@@ -55,6 +53,7 @@ public class ShiftWorkersDialog extends Dialog {
     gridActiveWorkers.setItems(workerList);
 
     gridActiveWorkers.setColumns("firstName","lastName","phoneNumber","position");
+
 //    gridActiveWorkers.asSingleSelect().setValue(workerList.get(0));
     gridActiveWorkers.setItems(workerService.findAll());
 
