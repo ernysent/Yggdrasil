@@ -12,6 +12,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import com.vaadin.flow.component.button.Button;
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@VaadinSessionScope
+@UIScope
 public class ShiftCreateDialog extends Dialog {
 
   private final DatePicker shiftDateField  = new DatePicker();
@@ -31,15 +32,13 @@ public class ShiftCreateDialog extends Dialog {
   private final Button removeButton = new Button("remove");
 
   private Shifts shift;
-  private final ShiftsGrid shiftsGrid;
+ // private final ShiftsGrid shiftsGrid;
 
   @Autowired
   public ShiftCreateDialog(
       ShiftWorkersDialog shiftWorkerDialog,
-      ShiftsGrid shiftsGrid,
       ShiftsService shiftsService
       ) {
-    this.shiftsGrid = shiftsGrid;
 
     // Design
 
@@ -99,7 +98,6 @@ public class ShiftCreateDialog extends Dialog {
         shiftsService.save(shift);
         System.out.println("Save Shift");
         close();
-        shiftsGrid.setItems(shiftsService.findAll());
       }
     });
   }

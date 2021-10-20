@@ -44,6 +44,7 @@ public class ShiftsGrid  extends VerticalLayout {
 
       grid.addItemDoubleClickListener(event ->{
         System.out.println("Duoble click");
+        shiftDialog.open();
 
       });
     }

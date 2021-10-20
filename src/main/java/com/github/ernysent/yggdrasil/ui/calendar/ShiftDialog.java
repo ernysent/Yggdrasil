@@ -24,8 +24,7 @@ public class ShiftDialog extends Dialog {
   public  ShiftDialog(
       ShiftCreateDialog shiftCreateDialog
       ){
-    //add(nameField,gridWorkersShiftField,closeButton,editButton);
-
+    add(nameField,gridWorkersShiftField,closeButton,editButton);
   }
 
 }
