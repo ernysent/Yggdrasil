@@ -29,8 +29,6 @@ public class ShiftWorkersDialog extends Dialog {
 
   private Grid<Worker> gridActiveWorkers = new Grid<>(Worker.class);
 
-  ShiftCreateDialog shiftCreateDialog;
-
   public Worker getSelectedWorker() {
     return gridActiveWorkers.asSingleSelect().getValue();
   }

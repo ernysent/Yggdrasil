@@ -1,9 +1,12 @@
 package com.github.ernysent.yggdrasil.ui.calendar;
 
+import com.github.ernysent.yggdrasil.data.ShiftsRepository;
 import com.github.ernysent.yggdrasil.domain.Shifts;
+import com.github.ernysent.yggdrasil.domain.Worker;
 import com.github.ernysent.yggdrasil.service.ShiftsService;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PreserveOnRefresh;
@@ -31,7 +34,6 @@ public class CalendarLayout extends VerticalLayout {
 
     Button createShifts = new Button("Create");
 
-
     HorizontalLayout shiftsDateAndCreate = new HorizontalLayout(valueDatePicker,createShifts);
     add(shiftsDateAndCreate, shiftsGrid);
 
@@ -39,17 +41,7 @@ public class CalendarLayout extends VerticalLayout {
       shiftCreateDialog.open();
       shiftCreateDialog.createShift(valueDatePicker.getValue());
     });
-
     shiftsGrid.setItems(shiftsService.findAll());
-
-//    valueDatePicker.setValue( EVENT -> {
-//      System.out.println(valueDatePicker);
-//      items = shiftsService.get(Date date);
-//      shiftsGrid.setItems(items);
-////
-//    });
-
-
   }
 
 }

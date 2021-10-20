@@ -7,7 +7,6 @@ import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,7 +16,6 @@ import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import com.vaadin.flow.component.button.Button;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import javax.swing.JColorChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -72,7 +70,7 @@ public class ShiftCreateDialog extends Dialog {
       if (worker!= null){
         shift.deleteWorker(worker);
         workersGridField.setItems(shift.getWorkers());
-        
+
         Notification.show("Worker deleted");
       }else {
         Notification.show("Please select Worker");
