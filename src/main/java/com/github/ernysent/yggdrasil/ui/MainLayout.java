@@ -178,12 +178,10 @@ public class MainLayout extends AppLayout  implements BeforeEnterObserver {
         if(UI.getCurrent().getSession().getAttribute("authentificated") == null) {
             System.out.println("1 forward -> login");
             beforeEnterEvent.forwardTo("login");
-            return;
         } else {
-            if (!UI.getCurrent().getSession().getAttribute("authentificated").equals("true")) {
-                beforeEnterEvent.forwardTo("login: " + UI.getCurrent().getSession().getAttribute("authentificated"));
+            if (!UI.getCurrent().getSession().getAttribute("authentificated").equals(true)) {
+                beforeEnterEvent.forwardTo("login");
                 System.out.println("2 forward -> login");
-                return;
             }
         }
     }
