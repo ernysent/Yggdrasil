@@ -13,6 +13,8 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.PWA;
@@ -72,11 +74,6 @@ public class MainLayout extends AppLayout  implements BeforeEnterObserver {
         startupLoader();
         System.out.println("MainLayout Constructor");
         addToNavbar(createHeaderContent());
-        Button logout = new Button("Logout");
-        logout.addClickListener(a-> {
-            UI.getCurrent().getSession().setAttribute("authentificated", false);
-        });
-        setContent(logout);
     }
 
     private Component createHeaderContent() {
@@ -86,9 +83,17 @@ public class MainLayout extends AppLayout  implements BeforeEnterObserver {
         Div layout = new Div();
         layout.addClassNames("flex", "h-xl", "items-center", "px-l");
 
+
         H1 appName = new H1("Yggdrasil");
         appName.addClassNames("my-0", "me-auto", "text-l");
         layout.add(appName);
+
+        Button logout = new Button("Logout",  new Icon(VaadinIcon.EXIT));
+        logout.addClickListener(a-> {
+            UI.getCurrent().getSession().setAttribute("authentificated", false);
+            UI.getCurrent().navigate("login");
+        });
+        layout.add(logout);
 
         Nav nav = new Nav();
         nav.addClassNames("flex", "gap-s", "overflow-auto", "px-m");
