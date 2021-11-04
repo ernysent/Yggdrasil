@@ -2,6 +2,7 @@ package com.github.ernysent.yggdrasil.ui.calendar;
 
 
 import com.github.ernysent.yggdrasil.domain.Shifts;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
@@ -24,6 +25,15 @@ public class ShiftDialog extends Dialog {
   public  ShiftDialog(
       ShiftCreateDialog shiftCreateDialog
       ){
+    setWidth(800, Unit.PIXELS);
+
+    editButton.addClickListener(click ->{
+      shiftCreateDialog.open();
+    });
+
+    closeButton.addClickListener(click->{
+      close();
+    });
     add(nameField,gridWorkersShiftField,closeButton,editButton);
   }
 
