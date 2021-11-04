@@ -9,13 +9,15 @@ import com.github.ernysent.yggdrasil.ui.calendar.CalendarView;
 import com.github.ernysent.yggdrasil.ui.home.HomeView;
 import com.github.ernysent.yggdrasil.ui.workers.WorkersView;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.PreserveOnRefresh;
-import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,7 +31,7 @@ import java.util.List;
 @Theme(themeFolder = "yggdrasil")
 @PageTitle("Main")
 @PreserveOnRefresh
-public class MainLayout extends AppLayout {
+public class MainLayout extends AppLayout  implements BeforeEnterObserver {
 
     private final WorkerService workerService;
     private final ShiftsService shiftsService;
@@ -70,6 +72,11 @@ public class MainLayout extends AppLayout {
         startupLoader();
         System.out.println("MainLayout Constructor");
         addToNavbar(createHeaderContent());
+        Button logout = new Button("Logout");
+        logout.addClickListener(a-> {
+            UI.getCurrent().getSession().setAttribute("authentificated", false);
+        });
+        setContent(logout);
     }
 
     private Component createHeaderContent() {
@@ -161,4 +168,18 @@ public class MainLayout extends AppLayout {
 
     }
 
+    @Override
+    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
+        if(UI.getCurrent().getSession().getAttribute("authentificated") == null) {
+            System.out.println("1 forward -> login");
+            beforeEnterEvent.forwardTo("login");
+            return;
+        } else {
+            if (!UI.getCurrent().getSession().getAttribute("authentificated").equals("true")) {
+                beforeEnterEvent.forwardTo("login: " + UI.getCurrent().getSession().getAttribute("authentificated"));
+                System.out.println("2 forward -> login");
+                return;
+            }
+        }
+    }
 }
