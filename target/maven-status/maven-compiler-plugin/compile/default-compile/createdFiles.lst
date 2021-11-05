@@ -1,2 +1,3 @@
+com\github\ernysent\yggdrasil\ui\login\LoginView.class
 com\github\ernysent\yggdrasil\data\ShiftsRepository.class
 com\github\ernysent\yggdrasil\ui\calendar\ShiftCreateDialog.class
