@@ -1,5 +1,12 @@
 # My App
 
+# Live demo
+
+http://www.yggdrasilapp.ga/login
+
+Login: Erny
+
+Password: sa
 
 # Pre run notes
 
